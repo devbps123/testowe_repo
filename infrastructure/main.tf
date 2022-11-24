@@ -32,3 +32,15 @@ module "lb-pure" {
   project = var.project
   domain_name = var.lb_domain_name
 }
+module "logs" {
+  source = "./modules/logs"
+  project = var.project
+}
+module "iam" {
+  depends_on = [module.logs]
+  source = "./modules/iam"
+  project = var.project
+  analitics_sa = module.logs.analitics_writer_identity_sa_id
+  application_sa = module.logs.application_writer_identity_sa_id
+  security_sa = module.logs.security_writer_identity_sa_id
+}
