@@ -6,8 +6,7 @@ module "security_log_export" {
   source                 = "terraform-google-modules/log-export/google"
   destination_uri        = "${module.security_destination.destination_uri}"
   filter                 = <<EOT
-(resource.type="service_account" AND log_id("cloudaudit.googleapis.com/activity") AND protoPayload.methodName="google.iam.admin.v1.CreateServiceAccount") OR
-(resource.type="project" AND log_id("cloudaudit.googleapis.com/activity") AND protoPayload.methodName="SetIamPolicy")
+/logs/cloudaudit.googleapis.com%2Factivity
 EOT
   log_sink_name          = "security-sink"
   parent_resource_id     = var.project
@@ -26,9 +25,7 @@ module "application_log_export" {
   source                 = "terraform-google-modules/log-export/google"
   destination_uri        = "${module.application_destination.destination_uri}"
   filter                 = <<EOT
-(resource.type="gce_instance" AND log_id("cloudaudit.googleapis.com/activity")) OR
-(resource.type="gce_instance" AND log_id("syslog")) OR
-(resource.type="logging_sink" AND log_id("cloudaudit.googleapis.com/activity") AND protoPayload.methodName=("google.logging.v2.ConfigServiceV2.DeleteSink" OR "google.logging.v2.ConfigServiceV2.UpdateSink"))
+logs/cloudaudit.googleapis.com%2Fsystem_event
 EOT
   log_sink_name          = "application-sink"
   parent_resource_id     = var.project
@@ -47,8 +44,7 @@ module "analitics_log_export" {
   source                 = "terraform-google-modules/log-export/google"
   destination_uri        = "${module.analitics_destination.destination_uri}"
   filter                 = <<EOT
-/logs/cloudaudit.googleapis.com%2Factivity OR
-/logs/cloudaudit.googleapis.com%2Fsystem_event
+/logs/cloudaudit.googleapis.com%2Fdata_access
 EOT
   log_sink_name          = "analitisc-sink"
   parent_resource_id     = var.project
