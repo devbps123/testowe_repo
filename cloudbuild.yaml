@@ -1,26 +1,23 @@
 timeout: 1200s
 steps:
 # terraform init -input=false
-- name: hashicorp/google
-  version: "4.44.1"
+- name: init
+  source: hashicorp/google
   args:
   - init
   - -input=false
 # terraform validate
 - name: hashicorp/google
-  version: "4.44.1"
   args:
   - validate
 # terraform plan -input=false -out=tfplan
 - name: hashicorp/google
-  version: "4.44.1"
   args:
   - plan
   - -input=false
   - -out=tfplan
 # terraform apply -auto-approve -input=false tfplan
 - name: hashicorp/google
-  version: "4.44.1"
   args:
   - apply
   - -auto-approve
