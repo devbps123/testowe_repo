@@ -1,29 +1,21 @@
-timeout: 1200s
-steps:
-# terraform init -input=false
-- name: init
-  source: hashicorp/google
-  args:
-  - init
-  - -input=false
-# terraform validate
-- name: hashicorp/google
-  args:
-  - validate
-# terraform plan -input=false -out=tfplan
-- name: hashicorp/google
-  args:
-  - plan
-  - -input=false
-  - -out=tfplan
-# terraform apply -auto-approve -input=false tfplan
-- name: hashicorp/google
-  args:
-  - apply
-  - -auto-approve
-  - -input=false
-  - tfplan
-artifacts:
-  objects:
-    location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/apply/$BUILD_ID'
-    paths: ['cloudbuild-tf-apply.yaml', 'tfplan']
+
+  - id: 'tf init'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: sh
+    args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm init -upgrade "]
+  - id: 'tf plan'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: sh
+    args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm plan  -out=plan.out"]    
+  - id: 'tf apply'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: sh
+    args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm apply plan.out"]    
+  - id: 'tf destroy'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: sh
+    args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm plan -destroy -out=plan.out"]    
+  - id: 'tf destroy plan'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: sh
+    args: ["-c","terraform -chdir=GCP/create-ha-vpn-comm apply plan.out"]    
