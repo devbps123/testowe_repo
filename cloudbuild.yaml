@@ -3,11 +3,17 @@ steps:
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
     args: ["-c","terraform init"]
+    options:
+      logging: CLOUD_LOGGING_ONLY
   - id: 'tf plan'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
     args: ["-c","terraform plan"]
+    options:
+      logging: CLOUD_LOGGING_ONLY
   - id: 'tf apply'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
     args: ["-c","terraform apply -auto-approve"]
+    options:
+      logging: CLOUD_LOGGING_ONLY
