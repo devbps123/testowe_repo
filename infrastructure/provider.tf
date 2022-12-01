@@ -4,6 +4,8 @@ provider "google" {
   zone        = var.zone
   credentials = var.credentials
 }
+provider "github" {
+}
 terraform {
   backend "gcs" {
     bucket  = "odnowa4-gid-poc-1930-sandbox-state"

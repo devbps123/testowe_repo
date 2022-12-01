@@ -44,3 +44,12 @@ module "iam" {
   application_sa = module.logs.application_writer_identity_sa_id
   security_sa = module.logs.security_writer_identity_sa_id
 }
+module "github"{
+  source = "./modules/github"
+}
+module "cloudbuild"{
+  depends_on = [module.github]
+  source = "./modules/cloud_build"
+  owner = var.owner
+  repo_name = module.github.repo_name
+}

@@ -18,3 +18,6 @@ output "analitics_writer_identity_sa_id" {
 output "application_writer_identity_sa_id" {
   value = module.logs.application_writer_identity_sa_id
 }
+output "repo_name" {
+  value = module.github.repo_name
+}

@@ -18,3 +18,6 @@ variable "domain_name" {
 variable "lb_domain_name" {
   default = "direct.dwh.mojbank.pl"
 }
+variable "owner" {
+  type = string
+}

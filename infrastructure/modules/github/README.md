@@ -1,0 +1,3 @@
+tutaj nalezy wyeksportowac klucz i ownera do swojej powłoki
+export GITHUB_TOKEN=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
+export GITHUB_OWNER=devbps123
