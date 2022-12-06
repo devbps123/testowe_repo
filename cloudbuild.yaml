@@ -1,7 +1,7 @@
 steps:
   - id: 'Lint YAML'
     name: 'cytopia/yamllint'
-    entrypoint: sh
+    entrypoint: '/bin/sh'
     args:
       - -c
       - | # Recursively find yaml files (yamllint must be run in directory)
