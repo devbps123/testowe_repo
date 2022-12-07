@@ -1,6 +1,6 @@
 steps:
   - id: 'test'
-    name: 'hashicorp/terraform:1.0.0'
+    name: 'bash'
     entrypoint: sh
     args: ["-c","ls"]
   - id: 'Lint'
