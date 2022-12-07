@@ -4,7 +4,7 @@ steps:
     name: 'ghcr.io/antonbabenko/pre-commit-terraform:v1.77.0'
     args: ["-c","pre-commit install --config .pre-commit-config.yaml"]
   - id: 'Lint check'
-    waitFor: ['Lint install']
+    waitFor: ['- Lint install']
     entrypoint: "bash"
     name: 'ghcr.io/antonbabenko/pre-commit-terraform:v1.77.0'
     args: ["-c","pre-commit run -a --config .pre-commit-config.yaml"]
