@@ -1,8 +1,16 @@
 steps:
   - id: 'Lint'
-    name: 'https://github.com/gruntwork-io/pre-commit'
-    entrypoint: sh
-    args: ["--module"]
+    repo: 'https://github.com/gruntwork-io/pre-commit'
+    rev: "v0.1.17"
+    hooks:
+      - id: tflint
+        args:
+          - --module
+          - --enable-rule=terraform_documented_variables
+          - --enable-rule=terraform_naming_convention
+          - --config=.tflint.hcl
+      - id: terraform-fmt
+
   - id: 'tf init'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
@@ -11,9 +19,9 @@ steps:
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
     args: ["-c","terraform plan"]
-  - id: 'tf apply'
-    name: 'hashicorp/terraform:1.0.0'
-    entrypoint: sh
-    args: ["-c","terraform apply -auto-approve"]
+#  - id: 'tf apply'
+#    name: 'hashicorp/terraform:1.0.0'
+#    entrypoint: sh
+#    args: ["-c","terraform apply -auto-approve"]
 options:
   logging: CLOUD_LOGGING_ONLY
