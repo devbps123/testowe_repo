@@ -1,5 +1,6 @@
 steps:
   - id: 'Lint'
+    entrypoint: "bash"
     name: 'ghcr.io/antonbabenko/pre-commit-terraform:v1.77.0'
     args: ["pre-commit install --config .pre-commit-config.yaml ","pre-commit run -a"]
   - id: 'tf init'
