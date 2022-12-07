@@ -1,6 +1,6 @@
 steps:
   - id: 'Lint'
-    repo: 'https://github.com/gruntwork-io/pre-commit'
+    name: 'https://github.com/gruntwork-io/pre-commit'
     rev: "v0.1.17"
     args: ["."]
   - id: 'tf init'
