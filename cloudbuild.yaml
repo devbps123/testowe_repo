@@ -1,7 +1,7 @@
 steps:
   - id: 'Lint'
-    name: 'https://github.com/gruntwork-io/pre-commit'
-    args: ["."]
+    name: 'ghcr.io/antonbabenko/pre-commit-terraform:v1.77.0'
+    args: ["pre-commit install --config .pre-commit-config.yaml "]
   - id: 'tf init'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
