@@ -1,12 +1,8 @@
 steps:
-  - id: 'test'
-    name: 'bash'
-    entrypoint: sh
-    args: ["-c","ls"]
   - id: 'Lint'
     entrypoint: "bash"
     name: 'ghcr.io/antonbabenko/pre-commit-terraform:v1.77.0'
-    args: ["pre-commit install --config .pre-commit-config.yaml ","pre-commit run -a"]
+    args: ["-c","ls","pre-commit install --config .pre-commit-config.yaml ","pre-commit run -a"]
   - id: 'tf init'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
