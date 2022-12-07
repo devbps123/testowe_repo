@@ -1,7 +1,6 @@
 steps:
   - id: 'Lint'
     name: 'https://github.com/gruntwork-io/pre-commit'
-    rev: "v0.1.17"
     args: ["."]
   - id: 'tf init'
     name: 'hashicorp/terraform:1.0.0'
