@@ -2,14 +2,7 @@ steps:
   - id: 'Lint'
     repo: 'https://github.com/gruntwork-io/pre-commit'
     rev: "v0.1.17"
-  - id: tflint
-      args:
-       - --module
-       - --enable-rule=terraform_documented_variables
-       - --enable-rule=terraform_naming_convention
-       - --config=.tflint.hcl
-  - id: terraform-fmt
-
+    args: ["."]
   - id: 'tf init'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: sh
